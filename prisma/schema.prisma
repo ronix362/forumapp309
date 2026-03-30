@@ -1,0 +1,341 @@
+// This is your Prisma schema file,
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated"
+}
+
+// dev.db: It is a SQLite database file
+// It stores: All your tables / All your rows (data) / All schema changes from migrations//
+//datasource db {
+//  provider = "sqlite"
+//  url = "file:./dev.db"
+//}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// --------------------------------------
+// ENUMS
+// --------------------------------------
+
+enum Role {
+  ADMIN
+  USER
+  VISITOR
+}
+
+enum AppealStatus {
+  APPROVED
+  IN_PROGRESS
+  DENIED
+}
+
+enum FollowActionType {
+  FOLLOW
+  REMOVE_FOLLOW
+}
+
+enum ForumType {
+  GENERAL
+  MATCH
+  TEAM
+}
+
+enum ReportStatus {
+  PENDING
+  DISMISSED
+  APPROVED
+  HIDDEN
+}
+
+// --------------------------------------
+// USER & AUTH
+// --------------------------------------
+
+model User {
+  id          	Int      	@id @default(autoincrement())
+  email       	String   @unique @default("")
+  password    String?   	@default("")
+  username    String   @unique @default("")
+  avatarId       Int       @default(0)
+  role        	Role     @default(USER)
+  banned      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Profile Relations
+  favoriteTeamId Int?
+  favoriteTeam   Team? @relation("UserFavoriteTeam", fields: [favoriteTeamId], references: [id])
+
+  // Social Relations (Followers/Following)
+  followers  Follow[]  @relation("UserFollowers")
+  following  Follow[]  @relation("UserFollowing")
+
+  // Activity Relations
+  appeals       	Appeal[]
+  posts         	Post[]
+  threads       	Thread[]
+  polls         	Poll[]
+  pollVotes     	PollVote[]
+  reports       	Report[]
+  refreshTokens RefreshToken[]
+}
+
+// Keep track of the status of the RefreshToken in DB, if a RefreshToken
+// is logged out, it will be removed from the DB.
+model RefreshToken {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Appeal {
+  id      Int          @id @default(autoincrement())
+  status  AppealStatus @default(IN_PROGRESS)
+  content String
+  userId  Int
+  user    User         @relation(fields: [userId], references: [id])
+}
+
+model Follow {
+  date       DateTime         @default(now())
+
+  followerId Int
+  follower    User @relation("UserFollowing", fields: [followerId], references: [id])
+
+  followingId Int
+  following   User @relation("UserFollowers", fields: [followingId], references: [id])
+  @@id([followerId, followingId]) // Prevents duplicate follows
+}
+
+// --------------------------------------
+// SPORTS DATA
+// --------------------------------------
+
+model Team {
+  id      Int    @id @default(autoincrement())
+  name    String
+  logoUrl String
+  venue      String?
+  
+  // Relations
+  fans        User[]  @relation("UserFavoriteTeam")
+  seasonYear  Int      @default(2025) // Keep the current season only.
+  homeMatches Match[] @relation("HomeTeam")
+  awayMatches Match[] @relation("AwayTeam")
+  
+  // A team can optionally have a specific Forum
+  forum       Forum?
+}
+
+model Match {
+  id         Int      @id @default(autoincrement())
+  date       DateTime
+  homeScore Int?     // Nullable if match hasn't started
+  awayScore Int?
+  matchday   Int
+  stage      String
+  completed  Boolean  @default(false)
+  winnerName String?
+
+  // Teams
+  homeTeamId Int
+  homeTeam   Team @relation("HomeTeam", fields: [homeTeamId], references: [id])
+  awayTeamId Int
+  awayTeam   Team @relation("AwayTeam", fields: [awayTeamId], references: [id])
+
+  // Forum Integration
+  // "DiscussionThread" - 1 per match standard thread
+  discussionThread   Thread? @relation("MatchDiscussionThread", fields: [discussionThreadId], references: [id])
+  discussionThreadId Int?    @unique
+}
+
+// --------------------------------------
+// FORUM & SOCIAL
+// --------------------------------------
+
+model Forum {
+  id       Int       @id @default(autoincrement())
+  type     ForumType // GENERAL, MATCH, TEAM
+  teamName String?   // Optional: if it is a specific team forum
+
+  // Relations to connect Forum to specific entities
+  teamId   Int?  @unique
+  team     Team? @relation(fields: [teamId], references: [id])
+
+  threads Thread[]
+
+  @@unique([type, teamName])
+}
+
+model Thread {
+  id                Int      @id @default(autoincrement())
+  title             String
+  tags       ThreadTag[]
+  visibility        Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  homeTeamSentiment String?
+  awayTeamSentiment String?
+
+  // Relations
+  authorId Int
+  author   User @relation(fields: [authorId], references: [id])
+
+  forumId Int
+  forum   Forum @relation(fields: [forumId], references: [id])
+
+  // Posts
+  posts Post[] @relation("ThreadPosts")
+
+  // Pointer to the "Main Post" (The OP)
+  mainPost   Post? @relation("ThreadMainPost", fields: [mainPostId], references: [id])
+  mainPostId Int?  @unique
+
+  // If this thread is the specific discussion thread for a match
+  matchDiscussionFor Match? @relation("MatchDiscussionThread")
+  matchId    Int? @unique
+
+  polls   Poll[]
+  reports Report[]
+  reportCount       Int   @default(0)
+
+  // Ai Moderation
+  aiAvgScore  Int? 
+}
+
+model ThreadTag {
+  id       Int    @id @default(autoincrement())
+  name     String
+  thread   Thread @relation(fields: [threadId], references: [id])
+  threadId Int
+}
+
+model Post {
+  id         Int      @id @default(autoincrement())
+  content    String
+  visibility Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  authorId Int
+  author   User @relation(fields: [authorId], references: [id])
+
+  threadId Int
+  thread   Thread @relation("ThreadPosts", fields: [threadId], references: [id])
+
+  // If this post is the Main Post of the thread
+  mainPostFor Thread? @relation("ThreadMainPost")
+
+  // Reply Logic (Tree structure)
+  replyingToId Int?
+  replyingTo   Post?  @relation("PostReplies", fields: [replyingToId], references: [id])
+  replies      Post[] @relation("PostReplies")
+
+  // Edit History (Linked List)
+  // oldPost points to the previous version
+  previousVersionId Int?  @unique
+  previousVersion   Post? @relation("PostHistory", fields: [previousVersionId], references: [id])
+  
+  // editedPost points to the next version
+  nextVersionId Int?  @unique
+  nextVersion       Post? @relation("PostHistory")
+
+  reports Report[]
+  reportCount       Int   @default(0)
+
+  // AI moderation
+  aiFlagged         Boolean?
+  aiMaxScore        Int?
+  aiScores          Json?
+  }
+
+model Report {
+  id                 Int          @id @default(autoincrement())
+  reason             String
+  status             ReportStatus @default(PENDING)
+  createdAt          DateTime     @default(now())
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+
+  // Targets (Optional, report can be on Post or Thread)
+  postId   Int?
+  post     Post?   @relation(fields: [postId], references: [id])
+  threadId Int?
+  thread   Thread? @relation(fields: [threadId], references: [id])
+
+  pollId Int?
+  poll   Poll? @relation(fields: [pollId], references: [id])
+}
+
+// --------------------------------------
+// POLLS
+// --------------------------------------
+
+model Poll {
+  id              Int      @id @default(autoincrement())
+  pollDescription String   @map("poll_description")
+  options         PollOption[]
+  deadline        DateTime
+  visibility      Boolean  @default(true)
+  createdAt       DateTime @default(now())
+
+  authorId Int
+  author   User @relation(fields: [authorId], references: [id])
+
+  threadId Int
+  thread   Thread @relation(fields: [threadId], references: [id])
+
+  pollVotes PollVote[]
+  reports   Report[]
+  reportCount       Int   @default(0)
+  
+  // AI moderation
+  aiFlagged         Boolean?
+  aiMaxScore        Int?
+  aiScores          Json?
+}
+
+model PollOption {
+  id     Int    @id @default(autoincrement())
+  text   String
+  poll   Poll   @relation(fields: [pollId], references: [id])
+  pollId Int
+}
+
+model PollVote {
+  id          Int      @id @default(autoincrement())
+  optionIndex Int
+  createdAt   DateTime @default(now())
+
+  pollId Int
+  poll   Poll @relation(fields: [pollId], references: [id])
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+
+  // Ensure a user cannot vote twice in the same poll
+  @@unique([pollId, userId])
+}
+
+// --------------------------------------
+// EXTERNAL DATA PLACEHOLDER
+// --------------------------------------
+
+model SportsData {
+  id        Int      @id @default(autoincrement())
+  jsonData  Json?
+  updatedAt DateTime @updatedAt
+}
+
+model AiDigest {
+  id        Int      @id @default(autoincrement())
+  digest    String
+  createdAt DateTime  @default(now())
+}

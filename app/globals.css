@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+body {
+  @apply bg-white text-black dark:bg-zinc-950 dark:text-zinc-100;
+}
+@variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg-primary: white;
+  --text-primary: black;
+  --bg-secondary: #f4f4f5;
+}
+
+.dark {
+  --bg-primary: #0a0a0a;
+  --text-primary: white;
+  --bg-secondary: #18181b;
+}
+
+/* Custom Animation for the Homepage Hero Background */
+@keyframes slow-zoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
+
+.animate-slow-zoom {
+  animation: slow-zoom 20s ease-in-out infinite alternate;
+}

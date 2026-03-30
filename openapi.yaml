@@ -1,0 +1,936 @@
+openapi: 3.0.0
+info:
+  title: My Collection
+  description: >-
+    ### Welcome to Postman! This is your first collection.
+
+
+    Collections are your starting point for building and testing APIs. You can
+    use this one to:
+
+
+    • Group related requests  
+
+    • Test your API in real-world scenarios  
+
+    • Document and share your requests
+
+
+    Update the name and overview whenever you’re ready to make it yours.
+
+
+    [Learn more about Postman
+    Collections.](https://learning.postman.com/docs/collections/collections-overview/)
+  version: 1.0.0
+servers:
+  - url: http://{{baseurl}}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags:
+  - name: CSC309 Project
+  - name: CSC309 Project > Users
+  - name: CSC309 Project > Users > Reports
+  - name: CSC309 Project > Users > Reports > [id]
+  - name: CSC309 Project > Users > Appeals
+  - name: CSC309 Project > Users > Follow
+  - name: CSC309 Project > Users > Followers
+  - name: CSC309 Project > Users > Following
+  - name: CSC309 Project > Users > [user]
+  - name: CSC309 Project > Users > Feed
+  - name: CSC309 Project > Users > Create users
+  - name: CSC309 Project > Users > Login users
+  - name: CSC309 Project > Users > Ban Users
+  - name: CSC309 Project > Matches
+  - name: CSC309 Project > aidigest
+  - name: CSC309 Project > Forums
+  - name: CSC309 Project > Forums > Threads
+  - name: CSC309 Project > Forums > Threads > GET api/threads
+  - name: CSC309 Project > Forums > Threads > POST /api/threads
+  - name: CSC309 Project > Forums > Threads > GET /api/threads/[id]
+  - name: CSC309 Project > Forums > Threads > PATCH /api/threads/[id]
+  - name: CSC309 Project > Forums > Threads > DELETE /api/threads/[id]
+  - name: CSC309 Project > Forums > Threads > GET /api/threads/[id]/sentiment
+  - name: CSC309 Project > Forums > Posts
+  - name: CSC309 Project > Forums > Posts > POST /api/threads/[id]/posts
+  - name: CSC309 Project > Forums > Posts > GET /api/threads/[id]/posts
+  - name: CSC309 Project > Forums > Posts > GET /api/users/[user]/posts/
+  - name: CSC309 Project > Forums > Posts > PATCH /api/posts/[id]
+  - name: CSC309 Project > Forums > Posts > DELETE /api/posts/[id]
+  - name: CSC309 Project > Forums > Posts > GET /api/posts/[id]/history/ [version]
+  - name: CSC309 Project > Forums > Posts > GET /api/posts/[id]/translate
+  - name: CSC309 Project > Forums > Polls
+  - name: CSC309 Project > Forums > Polls > POST /api/threads/[id]/polls
+  - name: CSC309 Project > Forums > Polls > GET /api/threads/[id]/polls
+  - name: CSC309 Project > Forums > Polls > GET /api/users/[user]/polls/
+  - name: CSC309 Project > Forums > Polls > GET /api/polls/[id]
+  - name: CSC309 Project > Forums > Polls > POST /api/polls/[id]/vote
+  - name: CSC309 Project > Forums > Polls > GET /api/polls/[id]/results
+  - name: CSC309 Project > Forums > Polls > DELETE /api/polls/[id]
+paths:
+  /api/users/reports/2:
+    patch:
+      tags:
+        - CSC309 Project > Users > Reports > [id]
+      summary: Change report status
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                status: APPROVED
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/users/reports:
+    post:
+      tags:
+        - CSC309 Project > Users > Reports
+      summary: Create report
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                reason: Test report, the post with id 1 is tested again.
+                targetType: THREAD
+                targetId: 1
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        undefined:
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                example-0:
+                  summary: Report thread 1
+                  value: ''
+                example-1:
+                  summary: Report thread 1
+                  value: ''
+    get:
+      tags:
+        - CSC309 Project > Users > Reports
+      summary: 5 reports on post 1
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/users/reports/1:
+    patch:
+      tags:
+        - CSC309 Project > Users > Reports
+      summary: Change report status
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                status: APPROVED
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/users/appeals:
+    post:
+      tags:
+        - CSC309 Project > Users > Appeals
+      summary: Create appeal
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                content: Test appeal Jaic
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - CSC309 Project > Users > Appeals
+      summary: Get appeals
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/users/appeals/1:
+    patch:
+      tags:
+        - CSC309 Project > Users > Appeals
+      summary: Change appeal status
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                status: APPROVED
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/users/follow:
+    post:
+      tags:
+        - CSC309 Project > Users > Follow
+      summary: Follow a user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                toFollowId: 1
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/users/followers:
+    get:
+      tags:
+        - CSC309 Project > Users > Followers
+      summary: Get followers
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - CSC309 Project > Users > Followers
+      summary: Delete a follower
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/users/following:
+    get:
+      tags:
+        - CSC309 Project > Users > Following
+      summary: Get followings
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - CSC309 Project > Users > Following
+      summary: Unfollow
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/users/1/activity:
+    get:
+      tags:
+        - CSC309 Project > Users > [user]
+      summary: Get Activity
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/users/1/profile:
+    get:
+      tags:
+        - CSC309 Project > Users > [user]
+      summary: Get profile info
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/users/feed:
+    get:
+      tags:
+        - CSC309 Project > Users > Feed
+      summary: Get feed
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/users/signup:
+    post:
+      tags:
+        - CSC309 Project > Users > Create users
+      summary: Create second user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: uoft@userexample.com
+                username: Eric
+                password: '1234'
+                role: USER
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/users/login:
+    post:
+      tags:
+        - CSC309 Project > Users > Ban Users
+      summary: User login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: Jaic
+                password: '1234'
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/users/ban:
+    patch:
+      tags:
+        - CSC309 Project > Users > Ban Users
+      summary: Ban a user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userId: 2
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/users/unban:
+    patch:
+      tags:
+        - CSC309 Project > Users > Ban Users
+      summary: Unban a user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userId: 2
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/threads:
+    post:
+      tags:
+        - CSC309 Project > Forums > Threads > POST /api/threads
+      summary: POST Team Thread
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: ThreadTest1
+                type: TEAM
+                teamName: Arsenal FC
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - CSC309 Project > Forums > Threads > GET api/threads
+      summary: Get Match threads
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: type
+          in: query
+          schema:
+            type: string
+          example: MATCH
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/users/refresh:
+    post:
+      tags:
+        - CSC309 Project > Users
+      summary: Refresh Access Tokens
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/users/logout:
+    post:
+      tags:
+        - CSC309 Project > Users
+      summary: User logout
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/users/edit:
+    patch:
+      tags:
+        - CSC309 Project > Users
+      summary: Edit User Info
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                avatarId: https://example.com/images/new-avatar.png
+                favoriteTeamId: 64
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/matches/standings:
+    get:
+      tags:
+        - CSC309 Project > Matches
+      summary: Standings
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/matches/search:
+    get:
+      tags:
+        - CSC309 Project > Forums > Threads > POST /api/threads
+      summary: Get Match
+      parameters:
+        - name: matchday
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/aidigest:
+    get:
+      tags:
+        - CSC309 Project > aidigest
+      summary: Get ai digest
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/threads/3:
+    get:
+      tags:
+        - CSC309 Project > Forums > Posts > POST /api/threads/[id]/posts
+      summary: Get Specific Thread by ID Copy
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/threads/1:
+    patch:
+      tags:
+        - CSC309 Project > Forums > Threads > PATCH /api/threads/[id]
+      summary: PATCH Thread
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: PatchedThread1
+                tags: Tag1,Tag2
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - CSC309 Project > Forums > Threads > DELETE /api/threads/[id]
+      summary: DELETE a Thread
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/threads/2:
+    patch:
+      tags:
+        - CSC309 Project > Forums > Threads > PATCH /api/threads/[id]
+      summary: PATCH Same Thread 2 (Thread2)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                tags: Tag4,Tag5
+                replace: true
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/threads/1/posts:
+    post:
+      tags:
+        - CSC309 Project > Forums > Threads > GET /api/threads/[id]/sentiment
+      summary: Negative post generate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                content: aston villa fc Sucks and performed like dogs
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/threads/{threadId}/posts:
+    post:
+      tags:
+        - CSC309 Project > Forums > Posts > GET /api/posts/[id]/translate
+      summary: Create a post in a different language
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                content: Bonjour, mon nom n'a pas d'importance.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: threadId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - CSC309 Project > Forums > Posts > GET /api/threads/[id]/posts
+      summary: Get Posts of a Thread
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: threadId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/threads/{threadId}/sentiment:
+    get:
+      tags:
+        - CSC309 Project > Forums > Threads > GET /api/threads/[id]/sentiment
+      summary: Get Sentiment
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: threadId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/users/2/posts:
+    get:
+      tags:
+        - CSC309 Project > Forums > Posts > GET /api/users/[user]/posts/
+      summary: Get Replies of a User
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: replyingToId
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/posts/44:
+    patch:
+      tags:
+        - CSC309 Project > Forums > Posts > PATCH /api/posts/[id]
+      summary: Modify an existing post and manage version history
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                content: New content !!
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/posts/48:
+    delete:
+      tags:
+        - CSC309 Project > Forums > Posts > DELETE /api/posts/[id]
+      summary: Delete a post
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/posts/43:
+    delete:
+      tags:
+        - CSC309 Project > Forums > Posts > DELETE /api/posts/[id]
+      summary: Delete a post
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/posts/42/history/1:
+    get:
+      tags:
+        - >-
+          CSC309 Project > Forums > Posts > GET /api/posts/[id]/history/
+          [version]
+      summary: Get oldest version
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/posts/42/history/latest:
+    get:
+      tags:
+        - >-
+          CSC309 Project > Forums > Posts > GET /api/posts/[id]/history/
+          [version]
+      summary: Get newest version
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/posts/{translatePostId}/translate:
+    get:
+      tags:
+        - CSC309 Project > Forums > Posts > GET /api/posts/[id]/translate
+      summary: Translate content of a post
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: translatePostId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/threads/1/polls:
+    post:
+      tags:
+        - CSC309 Project > Forums > Polls > POST /api/threads/[id]/polls
+      summary: Create a poll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                pollDescription: Test poll 1
+                options:
+                  - Option1
+                  - Option2
+                  - Option3
+                deadline: '2026-03-31T23:59:59Z'
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - CSC309 Project > Forums > Polls > GET /api/threads/[id]/polls
+      summary: Get polls
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/users/2/polls:
+    get:
+      tags:
+        - CSC309 Project > Forums > Polls > GET /api/users/[user]/polls/
+      summary: Get all polls of a user
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/polls/1:
+    get:
+      tags:
+        - CSC309 Project > Forums > Polls > GET /api/polls/[id]
+      summary: Get Poll by Id
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - CSC309 Project > Forums > Polls > DELETE /api/polls/[id]
+      summary: Delete a post Copy
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/polls/1/vote:
+    post:
+      tags:
+        - CSC309 Project > Forums > Polls > POST /api/polls/[id]/vote
+      summary: Vote on a poll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                optionIndex: 1
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/polls/1/results:
+    get:
+      tags:
+        - CSC309 Project > Forums > Polls > GET /api/polls/[id]/results
+      summary: Get results
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
