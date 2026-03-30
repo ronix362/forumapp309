@@ -1,0 +1,3504 @@
+{
+  "info": {
+    "_postman_id": "1d22832d-7538-4126-b4bc-9e812de74b9b",
+    "name": "My Collection",
+    "description": "### Welcome to Postman! This is your first collection.\n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests  \n• Test your API in real-world scenarios  \n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52573884",
+    "_collection_link": "https://go.postman.co/collection/52408947-1d22832d-7538-4126-b4bc-9e812de74b9b?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "CSC309 Project",
+      "item": [
+        {
+          "name": "Users",
+          "item": [
+            {
+              "name": "Reports",
+              "item": [
+                {
+                  "name": "[id]",
+                  "item": [
+                    {
+                      "name": "Change report status",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"status\": \"APPROVED\"\r\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/reports/2",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            "reports",
+                            "2"
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ]
+                },
+                {
+                  "name": "Create report",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{activeAccessToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"reason\": \"Test report, the post with id 1 is tested again.\",\n  \"targetType\": \"THREAD\",\n  \"targetId\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/reports",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "reports"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "Report thread 1",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"reason\": \"Test report, reporting 1st thread.\",\r\n  \"targetType\": \"THREAD\",\r\n  \"targetId\": 1\r\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "http://localhost:3000/api/users/reports",
+                          "protocol": "http",
+                          "host": [
+                            "localhost"
+                          ],
+                          "port": "3000",
+                          "path": [
+                            "api",
+                            "users",
+                            "reports"
+                          ]
+                        }
+                      },
+                      "_postman_previewlanguage": "Text",
+                      "header": [],
+                      "cookie": [
+                        {
+                          "expires": "Thu Jan 01 1970 00:00:00 GMT+0000 (Coordinated Universal Time)",
+                          "domain": "",
+                          "path": ""
+                        }
+                      ],
+                      "body": ""
+                    },
+                    {
+                      "name": "Report thread 1",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reason\": \"Test report, reporting poll 1.\",\n  \"targetType\": \"POLL\",\n  \"targetId\": 1\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/reports",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            "reports"
+                          ]
+                        }
+                      },
+                      "_postman_previewlanguage": "Text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "Get reports",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{activeAccessToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/reports?page=1\n",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "reports"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1\n"
+                        }
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "5 reports on post 1",
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "exec": [
+                          "// // Fire multiple requests at the same time\r",
+                          "// const requests = [\r",
+                          "//     {\r",
+                          "//     url: 'http://localhost:3000/api/users/reports',\r",
+                          "//     method: 'POST',\r",
+                          "//     header: { 'Content-Type': 'application/json' },\r",
+                          "//     body: {\r",
+                          "//         mode: 'raw',\r",
+                          "//         raw: JSON.stringify({ \r",
+                          "//             \"reason\": \"Test report.\",\r",
+                          "//             \"targetType\": \"POST\",\r",
+                          "//             \"targetId\": 1 \r",
+                          "//             })\r",
+                          "//     }\r",
+                          "//     },\r",
+                          "// ];\r",
+                          "\r",
+                          "// requests.forEach(function(req) {\r",
+                          "//     pm.sendRequest(req, function(err, res) {\r",
+                          "//         if (err) {\r",
+                          "//             console.error('Error:', err);\r",
+                          "//         } else {\r",
+                          "//             console.log(req.url, '->', res.status());\r",
+                          "//         }\r",
+                          "//     });\r",
+                          "// });"
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{activeAccessToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": []
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/reports?page=1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "reports"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Change report status",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"APPROVED\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/reports/1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "reports",
+                        "1"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "Appeals",
+              "item": [
+                {
+                  "name": "Create appeal",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{activeAccessToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"content\": \"Test appeal Jaic\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/appeals",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "appeals"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Get appeals",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{activeAccessToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/appeals?page=1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "appeals"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Change appeal status",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{activeAccessToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"APPROVED\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/appeals/1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "appeals",
+                        "1"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "Follow",
+              "item": [
+                {
+                  "name": "Follow a user",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{activeAccessToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"toFollowId\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/follow",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "follow"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "Followers",
+              "item": [
+                {
+                  "name": "Get followers",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{activeAccessToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/followers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "followers"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Delete a follower",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{activeAccessToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"followerId\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/followers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "followers"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "Following",
+              "item": [
+                {
+                  "name": "Get followings",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{activeAccessToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/following",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "following"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Unfollow",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{activeAccessToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"followingId\": 2\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/following",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "following"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "[user]",
+              "item": [
+                {
+                  "name": "Get Activity",
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/1/activity",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "1",
+                        "activity"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Get profile info",
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/1/profile",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "1",
+                        "profile"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "Feed",
+              "item": [
+                {
+                  "name": "Get feed",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{activeAccessToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/feed?page=1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "feed"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "Create users",
+              "item": [
+                {
+                  "name": "Create new user",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    },
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "exec": [
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"test@userexample.com\",\n  \"username\": \"Jaic\",\n  \"password\": \"1234\",\n  \"role\": \"USER\",\n  \"avatarUrl\": \"https://example.com/avatar.png\",\n  \"favoriteTeamId\": 57\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/signup",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "signup"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Create Admin",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"test@adminexample.com\",\n  \"username\": \"Admin\",\n  \"password\": \"1234\",\n  \"role\": \"ADMIN\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/signup",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "signup"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Invalid User Tests",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "// Repeated email\n{\n  \"email\": \"test@userexample.com\",\n  \"username\": \"Jaicc\",\n  \"password\": \"1234\",\n  \"role\": \"USER\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/signup",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "signup"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "Invalid User Tests",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"test@userexample.com\",\n  \"username\": \"Jaic\",\n  \"password\": \"1234\",\n  \"role\": \"USER\"\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "http://localhost:3000/api/users/signup",
+                          "protocol": "http",
+                          "host": [
+                            "localhost"
+                          ],
+                          "port": "3000",
+                          "path": [
+                            "api",
+                            "users",
+                            "signup"
+                          ]
+                        }
+                      },
+                      "_postman_previewlanguage": "Text",
+                      "header": [],
+                      "cookie": [],
+                      "body": null
+                    }
+                  ]
+                },
+                {
+                  "name": "Create second user",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"uoft@userexample.com\",\n  \"username\": \"Eric\",\n  \"password\": \"1234\",\n  \"role\": \"USER\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/signup",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "signup"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "Login users",
+              "item": [
+                {
+                  "name": "User login",
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "exec": [
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "// 1. Parse the JSON response body",
+                          "const response = pm.response.json();",
+                          "",
+                          "// 2. Check if both tokens exist in the response",
+                          "if (response.accessToken && response.refreshToken) {",
+                          "    ",
+                          "    // 3. Decode the JWT to check the user's role (Optional but helpful)",
+                          "    const payload = JSON.parse(atob(response.accessToken.split('.')[1]));",
+                          "",
+                          "    // 4. Save to your specific \"Active\" variables",
+                          "    pm.collectionVariables.set(\"activeAccessToken\", response.accessToken);",
+                          "    pm.collectionVariables.set(\"activeRefreshToken\", response.refreshToken);",
+                          "",
+                          "    // 5. Logic for Role-Specific Storage",
+                          "    if (payload.role === 'ADMIN') {",
+                          "        pm.collectionVariables.set(\"AdminToken\", response.accessToken);",
+                          "        console.log(\"Admin session captured.\");",
+                          "    }",
+                          "",
+                          "    console.log(`Success: Active tokens updated for ${payload.role || 'User'}`);",
+                          "} else {",
+                          "    console.error(\"Login failed or tokens missing from response.\");",
+                          "}"
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"Jaic\",\n  \"password\": \"1234\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "login"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "User login (second)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "// 1. Parse the JSON response body",
+                          "const response = pm.response.json();",
+                          "",
+                          "// 2. Check if both tokens exist in the response",
+                          "if (response.accessToken && response.refreshToken) {",
+                          "    ",
+                          "    // 3. Decode the JWT to check the user's role (Optional but helpful)",
+                          "    const payload = JSON.parse(atob(response.accessToken.split('.')[1]));",
+                          "",
+                          "    // 4. Save to your specific \"Active\" variables",
+                          "    pm.collectionVariables.set(\"activeAccessToken\", response.accessToken);",
+                          "    pm.collectionVariables.set(\"activeRefreshToken\", response.refreshToken);",
+                          "",
+                          "    // 5. Logic for Role-Specific Storage",
+                          "    if (payload.role === 'ADMIN') {",
+                          "        pm.collectionVariables.set(\"AdminToken\", response.accessToken);",
+                          "        console.log(\"Admin session captured.\");",
+                          "    }",
+                          "",
+                          "    console.log(`Success: Active tokens updated for ${payload.role || 'User'}`);",
+                          "} else {",
+                          "    console.error(\"Login failed or tokens missing from response.\");",
+                          "}"
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    },
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "exec": [
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"Eric\",\n  \"password\": \"1234\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "login"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Admin login",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "// 1. Parse the JSON response body",
+                          "const response = pm.response.json();",
+                          "",
+                          "// 2. Check if both tokens exist in the response",
+                          "if (response.accessToken && response.refreshToken) {",
+                          "    ",
+                          "    // 3. Decode the JWT to check the user's role (Optional but helpful)",
+                          "    const payload = JSON.parse(atob(response.accessToken.split('.')[1]));",
+                          "",
+                          "    // 4. Save to your specific \"Active\" variables",
+                          "    pm.collectionVariables.set(\"activeAccessToken\", response.accessToken);",
+                          "    pm.collectionVariables.set(\"activeRefreshToken\", response.refreshToken);",
+                          "",
+                          "    // 5. Logic for Role-Specific Storage",
+                          "    if (payload.role === 'ADMIN') {",
+                          "        pm.collectionVariables.set(\"AdminToken\", response.accessToken);",
+                          "        console.log(\"Admin session captured.\");",
+                          "    }",
+                          "",
+                          "    console.log(`Success: Active tokens updated for ${payload.role || 'User'}`);",
+                          "} else {",
+                          "    console.error(\"Login failed or tokens missing from response.\");",
+                          "}"
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    },
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "exec": [
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"Admin\",\n  \"password\": \"1234\"\n}\n"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "login"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "Ban Users",
+              "item": [
+                {
+                  "name": "Ban a user",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{activeAccessToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"userId\": 2\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/ban",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "ban"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Unban a user",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{activeAccessToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"userId\": 2\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/unban",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "unban"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Test-Banned User create threads",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{activeAccessToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"BannedUserThreadTest\",\n  \"type\": \"GENERAL\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/threads",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "threads"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "User login",
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "exec": [
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "// 1. Parse the JSON response body",
+                          "const response = pm.response.json();",
+                          "",
+                          "// 2. Check if both tokens exist in the response",
+                          "if (response.accessToken && response.refreshToken) {",
+                          "    ",
+                          "    // 3. Decode the JWT to check the user's role (Optional but helpful)",
+                          "    const payload = JSON.parse(atob(response.accessToken.split('.')[1]));",
+                          "",
+                          "    // 4. Save to your specific \"Active\" variables",
+                          "    pm.collectionVariables.set(\"activeAccessToken\", response.accessToken);",
+                          "    pm.collectionVariables.set(\"activeRefreshToken\", response.refreshToken);",
+                          "",
+                          "    // 5. Logic for Role-Specific Storage",
+                          "    if (payload.role === 'ADMIN') {",
+                          "        pm.collectionVariables.set(\"AdminToken\", response.accessToken);",
+                          "        console.log(\"Admin session captured.\");",
+                          "    }",
+                          "",
+                          "    console.log(`Success: Active tokens updated for ${payload.role || 'User'}`);",
+                          "} else {",
+                          "    console.error(\"Login failed or tokens missing from response.\");",
+                          "}"
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"Jaic\",\n  \"password\": \"1234\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "login"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "Refresh Access Tokens",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "packages": {},
+                    "exec": [
+                      "const response = pm.response.json();",
+                      "",
+                      "if (response.accessToken) {",
+                      "    // This updates your active token so the NEXT request you make is authorized",
+                      "    pm.collectionVariables.set(\"activeAccessToken\", response.accessToken);",
+                      "    console.log(\"Access token successfully rotated!\");",
+                      "}"
+                    ]
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": []
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{activeRefreshToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/users/refresh",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "users",
+                    "refresh"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "User logout",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "packages": {},
+                    "exec": [
+                      "if (pm.response.code === 200) {",
+                      "    console.log(\"Tokens cleared from Postman.\");",
+                      "}"
+                    ]
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": []
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{activeRefreshToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/users/logout",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "users",
+                    "logout"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Edit User Info",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{activeAccessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"avatarUrl\": \"https://example.com/images/new-avatar.png\",\n  \"favoriteTeamId\": 64\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/users/edit",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "users",
+                    "edit"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Matches",
+          "item": [
+            {
+              "name": "Standings",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/matches/standings",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "matches",
+                    "standings"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Search",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/matches/search?matchday=5",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "matches",
+                    "search"
+                  ],
+                  "query": [
+                    {
+                      "key": "matchday",
+                      "value": "5"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Search-Team ID",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "http://localhost:3000/api/matches/search?teamId=57",
+                      "protocol": "http",
+                      "host": [
+                        "localhost"
+                      ],
+                      "port": "3000",
+                      "path": [
+                        "api",
+                        "matches",
+                        "search"
+                      ],
+                      "query": [
+                        {
+                          "key": "teamId",
+                          "value": "57"
+                        }
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "Text",
+                  "header": [],
+                  "cookie": [],
+                  "body": null
+                },
+                {
+                  "name": "Search-Team ID and Past",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "http://localhost:3000/api/matches/search?teamId=57&status=upcoming",
+                      "protocol": "http",
+                      "host": [
+                        "localhost"
+                      ],
+                      "port": "3000",
+                      "path": [
+                        "api",
+                        "matches",
+                        "search"
+                      ],
+                      "query": [
+                        {
+                          "key": "teamId",
+                          "value": "57"
+                        },
+                        {
+                          "key": "status",
+                          "value": "upcoming"
+                        }
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "Text",
+                  "header": [],
+                  "cookie": [],
+                  "body": null
+                },
+                {
+                  "name": "Search-Team ID and matchday",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "http://localhost:3000/api/matches/search?teamId=57&matchday=5",
+                      "protocol": "http",
+                      "host": [
+                        "localhost"
+                      ],
+                      "port": "3000",
+                      "path": [
+                        "api",
+                        "matches",
+                        "search"
+                      ],
+                      "query": [
+                        {
+                          "key": "teamId",
+                          "value": "57"
+                        },
+                        {
+                          "key": "matchday",
+                          "value": "5"
+                        }
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "Text",
+                  "header": [],
+                  "cookie": [],
+                  "body": null
+                },
+                {
+                  "name": "Search-Past and matchday",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "http://localhost:3000/api/matches/search?status=past&matchday=5",
+                      "protocol": "http",
+                      "host": [
+                        "localhost"
+                      ],
+                      "port": "3000",
+                      "path": [
+                        "api",
+                        "matches",
+                        "search"
+                      ],
+                      "query": [
+                        {
+                          "key": "status",
+                          "value": "past"
+                        },
+                        {
+                          "key": "matchday",
+                          "value": "5"
+                        }
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "Text",
+                  "header": [],
+                  "cookie": [],
+                  "body": null
+                },
+                {
+                  "name": "Search-Team ID",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/matches/search?matchday=5",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "matches",
+                        "search"
+                      ],
+                      "query": [
+                        {
+                          "key": "matchday",
+                          "value": "5"
+                        }
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "Text",
+                  "header": [],
+                  "cookie": [],
+                  "body": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "aidigest",
+          "item": [
+            {
+              "name": "Get ai digest",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{activeAccessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/aidigest",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "aidigest"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Forums",
+          "item": [
+            {
+              "name": "Threads",
+              "item": [
+                {
+                  "name": "GET api/threads",
+                  "item": [
+                    {
+                      "name": "No Params: All threads",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"title\": \"ThreadTest1\",\r\n  \"type\": \"GENERAL\",\r\n  \"author\": \"Jaic\"\r\n}\r\n"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Get by Title",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads?title=Aston Villa FC vs Leeds United FC - Matchday 27",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads"
+                          ],
+                          "query": [
+                            {
+                              "key": "title",
+                              "value": "Aston Villa FC vs Leeds United FC - Matchday 27"
+                            }
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Get by Author",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"title\": \"ThreadTest1\",\r\n  \"type\": \"GENERAL\",\r\n  \"author\": \"Jaic\"\r\n}\r\n"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads?author=LeagueBot",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads"
+                          ],
+                          "query": [
+                            {
+                              "key": "author",
+                              "value": "LeagueBot"
+                            }
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Get Match threads",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"title\": \"ThreadTest1\",\r\n  \"type\": \"GENERAL\",\r\n  \"author\": \"Jaic\"\r\n}\r\n"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads?type=MATCH",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads"
+                          ],
+                          "query": [
+                            {
+                              "key": "type",
+                              "value": "MATCH"
+                            }
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ]
+                },
+                {
+                  "name": "POST /api/threads",
+                  "item": [
+                    {
+                      "name": "POST General thread",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"title\": \"ThreadTest1\",\r\n  \"type\": \"GENERAL\"\r\n}\r\n"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Get Match",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const jsonData = pm.response.json();\r",
+                              "\r",
+                              "// take first match\r",
+                              "const matchId = jsonData[0].id;\r",
+                              "\r",
+                              "// store in environment variable\r",
+                              "pm.environment.set(\"matchId\", matchId);"
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/matches/search?matchday=1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "matches",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "key": "matchday",
+                              "value": "1"
+                            }
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "POST Match Thread",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"title\": \"ThreadTest2\",\r\n  \"type\": \"MATCH\",\r\n  \"matchId\": {{matchId}}\r\n}"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "POST Team Thread",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"title\": \"ThreadTest1\",\r\n  \"type\": \"TEAM\",\r\n  \"teamName\": \"Arsenal FC\"\r\n}"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads"
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ]
+                },
+                {
+                  "name": "GET /api/threads/[id]",
+                  "item": [
+                    {
+                      "name": "Get Specific Thread by ID",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"title\": \"ThreadTest1\",\r\n  \"type\": \"GENERAL\",\r\n  \"author\": \"Jaic\"\r\n}\r\n"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads/3",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads",
+                            "3"
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ]
+                },
+                {
+                  "name": "PATCH /api/threads/[id]",
+                  "item": [
+                    {
+                      "name": "PATCH Thread",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"title\": \"PatchedThread1\",\r\n  \"tags\": \"Tag1,Tag2\"\r\n}\r\n"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads/1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads",
+                            "1"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "PATCH Thread2",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"title\": \"PatchedThread2\",\r\n  \"tags\": \"Tag3\"\r\n}\r\n"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads/2",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads",
+                            "2"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "PATCH Same Thread (Thread2)",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"tags\": \"Tag4,Tag5\"\r\n}"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads/2",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads",
+                            "2"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "PATCH Same Thread 2 (Thread2)",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"tags\": \"Tag4,Tag5\",\r\n  \"replace\": true\r\n}"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads/2",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads",
+                            "2"
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ]
+                },
+                {
+                  "name": "DELETE /api/threads/[id]",
+                  "item": [
+                    {
+                      "name": "DELETE a Thread",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads/1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads",
+                            "1"
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ]
+                },
+                {
+                  "name": "GET /api/threads/[id]/sentiment",
+                  "item": [
+                    {
+                      "name": "Negative post generate",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"content\": \"aston villa fc Sucks and performed like dogs\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads/1/posts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads",
+                            "1",
+                            "posts"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Positive post generate",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"content\": \"leeds united fc plays so well in today's game\"\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads/:threadId/posts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads",
+                            ":threadId",
+                            "posts"
+                          ],
+                          "variable": [
+                            {
+                              "key": "threadId"
+                            }
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Get Sentiment",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads/:threadId/sentiment",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads",
+                            ":threadId",
+                            "sentiment"
+                          ],
+                          "variable": [
+                            {
+                              "key": "threadId"
+                            }
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Posts",
+              "item": [
+                {
+                  "name": "POST /api/threads/[id]/posts",
+                  "item": [
+                    {
+                      "name": "Create a post in a thread",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n    \"content\": \"Hello World\"\r\n}"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads/:threadId/posts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads",
+                            ":threadId",
+                            "posts"
+                          ],
+                          "variable": [
+                            {
+                              "key": "threadId"
+                            }
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Create a reply",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n    \"content\": \"Hello World\",\r\n    \"replyingToId\": 3\r\n}"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads/:threadId/posts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads",
+                            ":threadId",
+                            "posts"
+                          ],
+                          "variable": [
+                            {
+                              "key": "threadId"
+                            }
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Create main post",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n    \"content\": \"Hello World\",\r\n    \"mainPostFor\": true\r\n}"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads/:threadId/posts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads",
+                            ":threadId",
+                            "posts"
+                          ],
+                          "variable": [
+                            {
+                              "key": "threadId"
+                            }
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Get Specific Thread by ID Copy",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"title\": \"ThreadTest1\",\r\n  \"type\": \"GENERAL\",\r\n  \"author\": \"Jaic\"\r\n}\r\n"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads/3",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads",
+                            "3"
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ]
+                },
+                {
+                  "name": "GET /api/threads/[id]/posts",
+                  "item": [
+                    {
+                      "name": "Get Posts of a Thread",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads/:threadId/posts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads",
+                            ":threadId",
+                            "posts"
+                          ],
+                          "variable": [
+                            {
+                              "key": "threadId"
+                            }
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Get Posts of a Thread",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads/:threadId/posts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads",
+                            ":threadId",
+                            "posts"
+                          ],
+                          "variable": [
+                            {
+                              "key": "threadId"
+                            }
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ]
+                },
+                {
+                  "name": "GET /api/users/[user]/posts/",
+                  "item": [
+                    {
+                      "name": "Get Posts of a User",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/2/posts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            "2",
+                            "posts"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Get Replies of a User",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/2/posts?replyingToId=1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            "2",
+                            "posts"
+                          ],
+                          "query": [
+                            {
+                              "key": "replyingToId",
+                              "value": "1"
+                            }
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ]
+                },
+                {
+                  "name": "PATCH /api/posts/[id]",
+                  "item": [
+                    {
+                      "name": "Modify an existing post and manage version history",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n    \"content\": \"New content !!\"\r\n}"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/posts/44",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "posts",
+                            "44"
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ]
+                },
+                {
+                  "name": "DELETE /api/posts/[id]",
+                  "item": [
+                    {
+                      "name": "Delete a post",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/posts/48",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "posts",
+                            "48"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Delete a post",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/posts/43",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "posts",
+                            "43"
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ]
+                },
+                {
+                  "name": "GET /api/posts/[id]/history/ [version]",
+                  "item": [
+                    {
+                      "name": "Get oldest version",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n    \"content\": \"New content\"\r\n}"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/posts/42/history/1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "posts",
+                            "42",
+                            "history",
+                            "1"
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Get newest version",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n    \"content\": \"New content\"\r\n}"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/posts/42/history/latest",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "posts",
+                            "42",
+                            "history",
+                            "latest"
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ]
+                },
+                {
+                  "name": "GET /api/posts/[id]/translate",
+                  "item": [
+                    {
+                      "name": "Create a post in a different language",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const jsonData = pm.response.json();\r",
+                              "\r",
+                              "// take first match\r",
+                              "const postId = jsonData.id;\r",
+                              "\r",
+                              "// store in environment variable\r",
+                              "pm.environment.set(\"translatePostId\", postId);"
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n    \"content\": \"Bonjour, mon nom n'a pas d'importance.\"\r\n}"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads/:threadId/posts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads",
+                            ":threadId",
+                            "posts"
+                          ],
+                          "variable": [
+                            {
+                              "key": "threadId"
+                            }
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "name": "Translate content of a post",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/posts/{{translatePostId}}/translate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "posts",
+                            "{{translatePostId}}",
+                            "translate"
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Polls",
+              "item": [
+                {
+                  "name": "POST /api/threads/[id]/polls",
+                  "item": [
+                    {
+                      "name": "Create a poll",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const jsonData = pm.response.json();\r",
+                              "\r",
+                              "// take first match\r",
+                              "const postId = jsonData.id;\r",
+                              "\r",
+                              "// store in environment variable\r",
+                              "pm.environment.set(\"translatePostId\", postId);"
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n    \"pollDescription\": \"Test poll 1\",\r\n    \"options\": [\"Option1\", \"Option2\", \"Option3\"],\r\n    \"deadline\": \"2026-03-31T23:59:59Z\"\r\n}"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads/1/polls",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads",
+                            "1",
+                            "polls"
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ]
+                },
+                {
+                  "name": "GET /api/threads/[id]/polls",
+                  "item": [
+                    {
+                      "name": "Get polls",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const jsonData = pm.response.json();\r",
+                              "\r",
+                              "// take first match\r",
+                              "const postId = jsonData.id;\r",
+                              "\r",
+                              "// store in environment variable\r",
+                              "pm.environment.set(\"translatePostId\", postId);"
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/threads/1/polls",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "threads",
+                            "1",
+                            "polls"
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ]
+                },
+                {
+                  "name": "GET /api/users/[user]/polls/",
+                  "item": [
+                    {
+                      "name": "Get all polls of a user",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const jsonData = pm.response.json();\r",
+                              "\r",
+                              "// take first match\r",
+                              "const postId = jsonData.id;\r",
+                              "\r",
+                              "// store in environment variable\r",
+                              "pm.environment.set(\"translatePostId\", postId);"
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/2/polls",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            "2",
+                            "polls"
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ]
+                },
+                {
+                  "name": "GET /api/polls/[id]",
+                  "item": [
+                    {
+                      "name": "Get Poll by Id",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const jsonData = pm.response.json();\r",
+                              "\r",
+                              "// take first match\r",
+                              "const postId = jsonData.id;\r",
+                              "\r",
+                              "// store in environment variable\r",
+                              "pm.environment.set(\"translatePostId\", postId);"
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/polls/1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "polls",
+                            "1"
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ]
+                },
+                {
+                  "name": "POST /api/polls/[id]/vote",
+                  "item": [
+                    {
+                      "name": "Vote on a poll",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const jsonData = pm.response.json();\r",
+                              "\r",
+                              "// take first match\r",
+                              "const postId = jsonData.id;\r",
+                              "\r",
+                              "// store in environment variable\r",
+                              "pm.environment.set(\"translatePostId\", postId);"
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n    \"optionIndex\": 1\r\n}"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/polls/1/vote",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "polls",
+                            "1",
+                            "vote"
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ]
+                },
+                {
+                  "name": "GET /api/polls/[id]/results",
+                  "item": [
+                    {
+                      "name": "Get results",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "exec": [
+                              "const jsonData = pm.response.json();\r",
+                              "\r",
+                              "// take first match\r",
+                              "const postId = jsonData.id;\r",
+                              "\r",
+                              "// store in environment variable\r",
+                              "pm.environment.set(\"translatePostId\", postId);"
+                            ],
+                            "type": "text/javascript",
+                            "packages": {},
+                            "requests": {}
+                          }
+                        }
+                      ],
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/polls/1/results",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "polls",
+                            "1",
+                            "results"
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ]
+                },
+                {
+                  "name": "DELETE /api/polls/[id]",
+                  "item": [
+                    {
+                      "name": "Delete a post Copy",
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{activeAccessToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/polls/1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "polls",
+                            "1"
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "activeAccessToken",
+      "value": ""
+    },
+    {
+      "key": "activeRefreshToken",
+      "value": ""
+    },
+    {
+      "key": "AdminToken",
+      "value": ""
+    },
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "translatePostId",
+      "value": "43"
+    }
+  ]
+}
